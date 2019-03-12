@@ -15,11 +15,8 @@ class gameoflife():
         initialArray = np.zeros((self.N,self.N),dtype=int)
         initialArray[pos[0]:pos[0]+starter.shape[0],pos[1]:pos[1]+starter.shape[1]] = starter
         self.lattice = Periodic_Lattice(initialArray)
-        self.kernel = np.zeros((3,3),dtype=int)
-        self.kernel[1,0]=1
-        self.kernel[0,1]=1
-        self.kernel[2,1]=1
-        self.kernel[1,2]=1
+        self.kernel = np.ones((3,3),dtype=int)
+        self.kernel[1,1]=0
         self.CoMs = []
 
     def simulate(self,steps):
@@ -39,7 +36,6 @@ class gameoflife():
         ax1.imshow(data)
 
 def main(args):
-    print(args)
     if len(args)==3:
         if int(args[1]) == 0:
             print("random")
